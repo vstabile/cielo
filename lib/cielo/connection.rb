@@ -8,6 +8,7 @@ module Cielo
       @http.use_ssl = true
       @http.open_timeout = 10*1000
       @http.read_timeout = 40*1000
+      # @http.set_debug_output $stderr
     end
     
     def request!(params={})
