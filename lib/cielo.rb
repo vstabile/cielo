@@ -5,7 +5,7 @@ require 'active_support/core_ext/hash'
 require "net/http"
 require "rexml/document"
 require "builder"
-[:connection, :transaction].each { |lib| require "cielo/#{lib}" }
+[:connection, :transaction, :status].each { |lib| require "cielo/#{lib}" }
 
 module Cielo
 
