@@ -109,8 +109,23 @@ module Cielo
         parameters.merge!(:"data-hora" => Time.now.strftime("%Y-%m-%dT%H:%M:%S")) unless parameters[:"data-hora"]
         parameters.merge!(:produto => "1") unless parameters[:produto]
         parameters.merge!(:parcelas => "1") unless parameters[:parcelas]
-        parameters[:bandeira].downcase!
-        parameters[:valor] *= 100
+        if parameters[:bandeira].nil? && parameters[:numero]
+          bandeira = number_to_brand(parameters[:numero])
+          parameters.merge!(:bandeira => bandeira)
+        end
+        parameters[:bandeira].downcase! unless parameters[:bandeira].nil?
+        parameters[:valor] = (parameters[:valor] * 100).to_i
+      end
+
+      def number_to_brand(number)
+        case number.to_s[0]
+        when "4"
+          "visa"
+        when "5"
+          "mastercard"
+        else
+           nil
+        end
       end
 
       def valida_criacao(parameters={})
