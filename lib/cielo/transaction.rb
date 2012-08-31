@@ -118,13 +118,16 @@ module Cielo
       end
 
       def number_to_brand(number)
-        case number.to_s[0]
-        when "4"
+        if (number.to_s[0,1] == "4")
           "visa"
-        when "5"
+        elsif (51..55).include? number.to_s[0,2].to_i
           "mastercard"
+        elsif (number.to_s[0,2] == "36")
+          "diners"
+        elsif number.to_s[0,2] == "65" ||number.to_s[0,4] == "6011" || (644..649).include?(number.to_s[0,3].to_i) || (622126..622925).include?(number.to_s[0,6].to_i)
+          "discover"
         else
-           nil
+          nil
         end
       end
 
