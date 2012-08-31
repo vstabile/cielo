@@ -127,7 +127,7 @@ module Cielo
         elsif number.to_s[0,2] == "65" ||number.to_s[0,4] == "6011" || (644..649).include?(number.to_s[0,3].to_i) || (622126..622925).include?(number.to_s[0,6].to_i)
           "discover"
         else
-          nil
+          "elo"
         end
       end
 
