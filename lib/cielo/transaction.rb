@@ -114,7 +114,7 @@ module Cielo
           parameters.merge!(:bandeira => bandeira)
         end
         parameters[:bandeira].downcase! unless parameters[:bandeira].nil?
-        parameters[:valor] = (parameters[:valor] * 100).to_i
+        parameters[:valor] = (parameters[:valor].to_i * 100).to_i
       end
 
       def number_to_brand(number)
